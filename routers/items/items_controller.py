@@ -17,5 +17,6 @@ def read_items(table: str):
         return result
     except Exception as e:
         print(e)
-        return {"error": e}
+        return e
+
 
