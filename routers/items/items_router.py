@@ -13,5 +13,5 @@ def check_update(db: Session = Depends(get_db)):
 
 
 @router.post("/{table}", dependencies=[Depends(access_user_token)])
-def read_items(table: str):
-    return items_controller.read_items(table)
+def read_items(table: str, db: Session = Depends(get_db)):
+    return items_controller.read_items(table, db)
