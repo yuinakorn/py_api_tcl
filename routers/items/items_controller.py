@@ -19,8 +19,10 @@ def read_items(table: str, db: Session):
         with connection.cursor() as cursor:
             cursor.execute(sql)
             result = cursor.fetchall()
-
+        cursor.close()
         return result
     except Exception as e:
         print(e)
+        cursor.close()
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail=e.args[1])
+
