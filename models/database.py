@@ -8,13 +8,14 @@ import pymysql.cursors
 
 config_env = dotenv_values(".env")
 
-
 engine = create_engine("mysql+pymysql://{user}:{password}@{host}:{port}/{db_name}?charset=utf8mb4".format(
     user=config_env['USER'],
     password=parse.quote_plus(config_env['PASSWORD']),
     host=config_env['HOST'],
     port=config_env['PORT'],
-    db_name=config_env['DB_NAME']
+    db_name=config_env['DB_NAME'],
+    connection_timeout=60,
+    buffered=True
 ))
 
 session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
