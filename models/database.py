@@ -14,8 +14,10 @@ engine = create_engine("mysql+pymysql://{user}:{password}@{host}:{port}/{db_name
     host=config_env['HOST'],
     port=config_env['PORT'],
     db_name=config_env['DB_NAME'],
-    connection_timeout=60,
-    buffered=True
+    pool_recycle=60,
+    max_overflow=5,
+    wait_time=28800,
+    pool_size=10
 ))
 
 session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
