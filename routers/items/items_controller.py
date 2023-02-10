@@ -22,6 +22,5 @@ def read_items(table: str, db: Session):
         return result
     except Exception as e:
         print(e)
-        cursor.close()
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail=e.args[1])
 
