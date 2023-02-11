@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.items.items_model import TableStatus
-from models.database import connection
+from models.database import get_connection
 from fastapi import HTTPException, status
 
 
@@ -14,6 +14,7 @@ def read_items(table: str, db: Session):
     if table not in allow_table_name:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f"Table {table} not found or not allow to access.")
 
+    connection = get_connection()
     try:
         sql = "SELECT * FROM %s" % table
         with connection.cursor() as cursor:
