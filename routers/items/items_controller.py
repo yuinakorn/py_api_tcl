@@ -14,20 +14,20 @@ def read_items(table: str, db: Session):
     if table not in allow_table_name:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f"Table {table} not found or not allow to access.")
 
-    connection = get_connection()
     try:
+        connection = get_connection()
         sql = "SELECT * FROM %s" % table
         with connection.cursor() as cursor:
             cursor.execute(sql)
             result = cursor.fetchall()
             cursor.close()
+        connection.close()
         return result
     except Exception as e:
         print(e)
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail=e.args[1])
 
-    finally:
-        connection.close()
+
 
 
 
