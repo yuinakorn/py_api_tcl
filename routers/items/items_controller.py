@@ -26,5 +26,8 @@ def read_items(table: str, db: Session):
         print(e)
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail=e.args[1])
 
+    finally:
+        connection.close()
+
 
 
