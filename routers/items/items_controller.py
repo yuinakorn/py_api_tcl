@@ -1,7 +1,10 @@
+from dotenv import dotenv_values
 from sqlalchemy.orm import Session
 from models.items.items_model import TableStatus
-from models.database import get_connection
 from fastapi import HTTPException, status
+import pymysql.cursors
+
+config_env = dotenv_values(".env")
 
 
 def check_update(db: Session):
@@ -15,7 +18,13 @@ def read_items(table: str, db: Session):
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f"Table {table} not found or not allow to access.")
 
     try:
-        connection = get_connection()
+        connection = pymysql.connect(host=config_env["HOST"],
+                                     user=config_env["USER"],
+                                     password=config_env["PASSWORD"],
+                                     db=config_env["DB_NAME"],
+                                     charset=config_env["CHARSET"],
+                                     cursorclass=pymysql.cursors.DictCursor
+                                     )
         sql = "SELECT * FROM %s" % table
         with connection.cursor() as cursor:
             cursor.execute(sql)

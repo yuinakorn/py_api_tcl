@@ -33,17 +33,4 @@ def get_db():
         db.close()
 
 
-config_env = dotenv_values(".env")
 
-
-def get_connection():
-    connection = pymysql.connect(host=config_env["HOST"],
-                                 user=config_env["USER"],
-                                 password=config_env["PASSWORD"],
-                                 db=config_env["DB_NAME"],
-                                 charset=config_env["CHARSET"],
-                                 cursorclass=pymysql.cursors.DictCursor,
-                                 # connect_timeout=28800,
-                                 # autocommit=True,
-                                 )
-    return connection
