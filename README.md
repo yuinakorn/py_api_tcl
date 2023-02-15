@@ -20,6 +20,11 @@ docker-compose --version
 sudob yum install git
 ```
 
+# ติดตั้ง ฐานข้อมูล
+```bash
+https://next.cmhis.org/s/ELMCm9MRAdSCQk5
+```
+
 # clone โปรเจค
 ```bash
 git clone https://github.com/yuinakorn/py_api_tcl.git
