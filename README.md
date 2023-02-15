@@ -32,6 +32,7 @@ cd py_api_tcl
 
 # แก้ไข .env
 ```bash
+mv env.example .env
 nano .env
 ```
 
