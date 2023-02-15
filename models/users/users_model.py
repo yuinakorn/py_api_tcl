@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 
 class DbUser(Base):
-    __tablename__ = "users"
+    __tablename__ = "tcl_users"
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True)
     password = Column(String)
