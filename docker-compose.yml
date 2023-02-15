@@ -6,4 +6,4 @@ services:
       - '8084:8000'
     volumes:
       - './:/app'
-    restart: 'always'
+    restart: 'unless-stopped'
